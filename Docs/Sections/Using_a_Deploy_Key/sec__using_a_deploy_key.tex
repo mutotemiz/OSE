@@ -1,0 +1,48 @@
+\section{Using a Deploy Key}
+    This is the scenario: "You are working on a project locally on your PC. You want to upload your changes to your remote repository on Github. You looked up the commands to do it, you typed them on your terminal but you keep getting the following error message:
+    
+    \begin{tcolorbox}
+        \texttt{fatal: Could not read from remote repository.}
+
+        \texttt{Please make sure you have the correct access rights
+        and the repository exists.}
+    \end{tcolorbox}
+
+    There are various ways to get passed through this "wall". In this section we are going to talk about using a "Deploy Key". 
+    The philosopy is simple. Imagine your remote repository as a book with a lock on.
+    
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics*[scale=0.12]{./Figures/GIT/Using_a_deploy_key/Book_with_a_lock.jpg}
+        \captionsetup{type=figure}
+        \captionof{figure}{Your repository.}
+        \label{fig:UaDK_Book_with_a_key}
+    \end{minipage}
+
+    To protect the contents of this book, you need to "make" or "buy" a special lock for this book. You go to a locksmith, in our case this locksmith is noone other than the famous program \texttt{ssh}, and ask them to make you a special lock and a key. How do you do that? Using the following command:
+
+    \begin{tcolorbox}
+        \texttt{ssh-keygen}
+    \end{tcolorbox}
+
+    When you enter the command given above, a key and lock pair is generated. However, it is mentioned as "key-pair" in the terminology. Let's stick to the terminology. The program asks you to provide it with the location to save this \textit{key-pair}. The best practice is to save it in the (hidden) "\texttt{.ssh}" folder in your "home" directory and give it a name that is relevant to the project you are working on: such as "\texttt{id\_mysecretproject}"
+
+    If you navigate to the folder where you saved the generated key-pair, in our example it was "\texttt{$\sim$/.ssh/}", you will see 2 files with the name chose:
+    \begin{itemize}
+        \item \texttt{id\_mysecretproject}
+        \item \texttt{id\_mysecretproject.pub}
+    \end{itemize}
+
+    These are simply text documents. You can open them with \texttt{nano}, \texttt{gedit}, \texttt{vim}, or whatever you want to open with. The one with \texttt{.pub} is the "lock" in our analogy and the one without is the "key". So you keep the key, and use the lock to secure your repository. You need to copy the contents of the file with "\texttt{.pub}" extension, which stands for "public", and paste it to the "Deploy Key" section of your repository. Then you need to tell \texttt{GIT} which key to use.
+
+    To do that, you need to navigate to the your local repository - in other words, your project folder. Check if you are in the correct folder by running "\texttt{ls -la}". If you see "\texttt{.git}" folder in the listed folders and files, you are at the correct location. The run the following command:
+    
+    \begin{tcolorbox}
+        \texttt{git config core.sshCommand "ssh -i ~/.ssh/id\_mysecretproject -F /dev/null"}
+    \end{tcolorbox}
+
+    In the above command, you should of course update "texttt{~/.ssh/id\_mysecretproject}" part with the correct path to your generated ssh key. But the rest stays the same. After doing this, you can easily \textit{push} your changes to the remote repository, a.k.a. your repository on github.
+
+    Please note that, a similar approach can be used for other GIT hosts. The mentality here is to generate a \textit{key-pair} and telling the \texttt{git} program where to find the correct key to open the remote repository.
+
+    If you want one more step of security, you can add the \texttt{- o} option to the end of the command. Then it will ask you to provide a password during the setup.

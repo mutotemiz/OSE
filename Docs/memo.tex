@@ -1,5 +1,10 @@
 \documentclass{article}
+\usepackage{graphicx}
 \usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{tcolorbox}
+
  \geometry{
  a4paper,
  total={170mm,257mm},
@@ -15,4 +20,40 @@
 \begin{document}
 \maketitle
 This document will be used for taking some notes about how to do certain things.
+\section{How to \texttt{git}?}
+    \subsection{What is \texttt{git}?}
+        \texttt{git} is a very important tool for all type of technical people. Its primary target audience may be people who develop codes, scripts, etc. but that's not the only usage. If one (or more) items below apply to you, then you can also benefit from its capabilities:
+        \begin{itemize}
+            \item \textbf{If you are working on a long-lasting project:} Over time, it is possible that you need to update the files, documents you work on. And that can create problems with the rest of the project. For example, you have some test data. Based on that data, you calculate the performance of the part you designed. But you though you can improve your calculation method and did some changes on them. But suddenly, your script starts throwing all types of error to the screen and you don't even know where to look. Since \texttt{git} shows you what types of changes you have done over time, you can go back to a previous version and restore the functionality.\par
+                \begin{minipage}{\linewidth}
+                    \centering
+                    \includegraphics*[scale=0.3]{./Figures/Figure_Placeholder.png}
+                    \captionsetup{type=figure}
+                    \captionof{figure}{Schematics of a long-lasting project.}
+                    \label{fig:GIT_LongLastingProject}
+                \end{minipage}
+    
+            \item \textbf{If you are wortking on a project with multiple people:} You are in a project that one person can not handle. So, input from multiple people are necessary. But, how can we deal with people trying to work on the same files at the same time? What about contradicting inputs? Or contributions not being compatible with the rest of the project... Of course all that alignment task should be addressed by a project manager but as the team grows, this job becomes more and more overwhelming. Same goes for the team members also. They need to consider multiple things before submitting their work. All of those can be reduced by a well-organized system and set of tools, which \texttt{git} provides.\par
+                \begin{minipage}{\linewidth}
+                    \centering
+                    \includegraphics*[scale=0.3]{./Figures/Figure_Placeholder.png}
+                    \captionsetup{type=figure}
+                    \captionof{figure}{Schematics of a project with multiple people.}
+                    \label{fig:GIT_ProjectWithMultiplePeople}
+                \end{minipage} 
+    
+        \end{itemize}
+        
+        So, we can make use of this program to trace the development of our work. But if you try to read its original documentation, and things can quickly get a little overwhelming. I suspect that the original documentation is written in that way to make sure that it serves as a "filter" so that only people with version-control background can quickly start using it. But I believe that shouldn't be the case. Everyone who needs it should be able to be use! Because this program is simply genius!\par 
+
+        I am not going to lie... It took me several attempts to understand how it works. In order to make sure that I don't have to relearn everything next time, I started taking some notes. And then I thought, "What if there are people like me who may benefit from these quick-start tips?" And I decided to make these notes more readible. Here we are!
+
+
+    \subsection{How Does \texttt{git} Work?}
+        First of all: \texttt{git} and \href{https://github.com/}{\texttt{github}} are not the same thing. git is the program. mostly works on your computer locally, where \texttt{github} is one of the online storages where you can upload your work. There are other options such as \href{https://about.gitlab.com/}{\texttt{gitlab}}, \href{https://bitbucket.org/}{\texttt{bitbucket}}, etc.
+
+        \texttt{git} is a program. It is an open-source program written by the famous Linus Torvalds, the same man who shared the Linux kernel with the world. Similar to Linux, \texttt{git} is also free. Since these notes are focusing on the "open-source" world, I will assume you are also using a PC running a Linux distro. If not, I am pretty sure you can find better notes or tutorials how to do the things mentioned in these notes somewhere else.
+
+\input{./Sections/Using_a_Deploy_Key/sec__using_a_deploy_key.tex}
+        
 \end{document}
